@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import ToolSidebar from './ToolSidebar.jsx'
-import Canvas from './Canvas.jsx'
+import CanvasSimple from './CanvasSimple.jsx'
 import PropertiesPanel from './PropertiesPanel.jsx'
 import { useProject } from '../../context/ProjectContext.jsx'
 import { imageConverter } from '../../utils/imageConverter.js'
@@ -105,7 +105,7 @@ function EditorWorkspace() {
       />
 
       {/* Center - Canvas */}
-      <Canvas
+      <CanvasSimple
         svgContent={svgContent}
         selectedTool={selectedTool}
         boardDimensions={boardDimensions}

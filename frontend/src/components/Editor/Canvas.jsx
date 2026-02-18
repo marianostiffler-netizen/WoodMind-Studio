@@ -4,7 +4,7 @@ function Canvas({
   svgContent, 
   selectedTool, 
   boardDimensions,
-  woodType,
+  woodType = 'oak',
   onCanvasUpdate 
 }) {
   const canvasRef = useRef(null)
