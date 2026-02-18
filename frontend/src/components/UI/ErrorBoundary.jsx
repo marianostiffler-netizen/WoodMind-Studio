@@ -6,6 +6,16 @@ class ErrorBoundary extends React.Component {
     this.state = { hasError: false, error: null, errorInfo: null }
   }
 
+  shouldShowDebugDetails() {
+    try {
+      if (typeof window === 'undefined') return false
+      const params = new URLSearchParams(window.location.search)
+      return params.get('debug') === '1'
+    } catch {
+      return false
+    }
+  }
+
   static getDerivedStateFromError(error) {
     return { hasError: true }
   }
@@ -16,10 +26,8 @@ class ErrorBoundary extends React.Component {
       errorInfo: errorInfo
     })
     
-    // Log error to console in development
-    if (import.meta.env.DEV) {
-      console.error('ErrorBoundary caught an error:', error, errorInfo)
-    }
+    // Always log errors to console (needed to diagnose production/Vercel issues)
+    console.error('ErrorBoundary caught an error:', error, errorInfo)
   }
 
   handleRetry = () => {
@@ -62,7 +70,7 @@ class ErrorBoundary extends React.Component {
                 </button>
               </div>
               
-              {import.meta.env.DEV && this.state.error && (
+              {(import.meta.env.DEV || this.shouldShowDebugDetails()) && this.state.error && (
                 <details className="mt-6 text-left">
                   <summary className="cursor-pointer text-sm text-gray-500 hover:text-gray-700">
                     Error Details (Development)
