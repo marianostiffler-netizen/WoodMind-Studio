@@ -4,7 +4,7 @@ import React, { createContext, useContext, useReducer } from 'react'
 const initialState = {
   projectName: '',
   svgContent: null,
-  boardDimensions: { width: 40, height: 30, depth: 2 },
+  boardDimensions: { width: 40, height: 30, thickness: 2, orientation: 'horizontal' },
   selectedWoodType: 'oak',
   originalImage: null,
   currentStep: 'home', // home, editor, viewer, pricing
