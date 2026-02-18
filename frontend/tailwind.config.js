@@ -14,6 +14,10 @@ export default {
         'wood-oak': '#C8A96E',
         'wood-pine': '#DEB887',
         'wood-mahogany': '#C04000',
+        'wood-600': '#8B4513',
+        'wood-700': '#5C3A1E',
+        'wood-500': '#D4A574',
+        'wood-100': '#F5E6D3',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

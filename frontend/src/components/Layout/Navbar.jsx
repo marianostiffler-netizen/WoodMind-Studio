@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useProject } from '../../context/ProjectContext.jsx'
 import { 
-  MenuIcon, 
+  Bars3Icon, 
   XMarkIcon, 
   HomeIcon, 
   PencilIcon, 
   CubeIcon, 
   CurrencyDollarIcon,
-  TreesIcon 
+  BeakerIcon 
 } from '@heroicons/react/24/outline'
 
 function Navbar() {
@@ -31,7 +31,7 @@ function Navbar() {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link to="/" className="flex items-center space-x-2">
-                <TreesIcon className="h-8 w-8 text-wood-600" />
+                <BeakerIcon className="h-8 w-8 text-wood-600" />
                 <span className="text-xl font-bold text-gray-900">
                   WoodMind Studio
                 </span>
@@ -84,7 +84,7 @@ function Navbar() {
                 {mobileMenuOpen ? (
                   <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                 ) : (
-                  <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                  <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                 )}
               </button>
             </div>
