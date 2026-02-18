@@ -4,8 +4,9 @@ import Navbar from './Navbar.jsx'
 
 function Layout({ children }) {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Navbar />
+    <div className="min-h-screen bg-gray-900">
+      {/* Only show navbar on non-editor pages */}
+      {window.location.pathname !== '/editor' && <Navbar />}
       <main className="flex-1">
         {children || <Outlet />}
       </main>
