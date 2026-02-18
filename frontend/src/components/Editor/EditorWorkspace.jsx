@@ -151,7 +151,7 @@ function EditorWorkspace() {
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-gray-800 p-6 rounded-lg">
             <div className="w-8 h-8 border-2 border-wood-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-white">Processing image...</p>
+            <p className="text-white">Procesando imagen...</p>
           </div>
         </div>
       )}
