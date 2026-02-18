@@ -22,70 +22,127 @@ function Canvas({
     const scaleX = maxWidth / boardDimensions.width
     const scaleY = maxHeight / boardDimensions.height
     
-    return Math.min(scaleX, scaleY, 2) // Max 2x zoom
+    return Math.min(scaleX, scaleY, 4) // Max 4x zoom for 4K quality
   }, [boardDimensions])
 
-  // Draw wood background
+  // Draw wood background with enhanced 4K quality
   const drawWoodBackground = useCallback((ctx) => {
     const scale = calculateScale()
     
-    // Clear canvas
-    ctx.fillStyle = '#1a1a1a'
+    // Clear canvas with dark background
+    ctx.fillStyle = '#0a0a0a'
     ctx.fillRect(0, 0, canvasSize.width, canvasSize.height)
     
-    // Draw wood board
+    // Draw wood board with enhanced quality
     const boardWidth = boardDimensions.width * scale
     const boardHeight = boardDimensions.height * scale
     const boardX = (canvasSize.width - boardWidth) / 2
     const boardY = (canvasSize.height - boardHeight) / 2
     
-    // Wood texture simulation
-    const gradient = ctx.createLinearGradient(boardX, boardY, boardX + boardWidth, boardY)
+    // Enhanced wood texture simulation with multiple gradients
+    const mainGradient = ctx.createLinearGradient(boardX, boardY, boardX + boardWidth, boardY)
+    const depthGradient = ctx.createLinearGradient(boardX, boardY, boardX, boardY + boardHeight)
     
     switch(woodType) {
       case 'pine':
-        gradient.addColorStop(0, '#DEB887')
-        gradient.addColorStop(0.5, '#D4A574')
-        gradient.addColorStop(1, '#C8A96E')
+        mainGradient.addColorStop(0, '#F5DEB3')
+        mainGradient.addColorStop(0.3, '#DEB887')
+        mainGradient.addColorStop(0.6, '#D4A574')
+        mainGradient.addColorStop(1, '#C8A96E')
+        depthGradient.addColorStop(0, 'rgba(245, 222, 179, 0.3)')
+        depthGradient.addColorStop(1, 'rgba(200, 169, 110, 0.3)')
         break
       case 'oak':
-        gradient.addColorStop(0, '#C8A96E')
-        gradient.addColorStop(0.5, '#8B4513')
-        gradient.addColorStop(1, '#703610')
+        mainGradient.addColorStop(0, '#D2691E')
+        mainGradient.addColorStop(0.3, '#A0522D')
+        mainGradient.addColorStop(0.6, '#8B4513')
+        mainGradient.addColorStop(1, '#703610')
+        depthGradient.addColorStop(0, 'rgba(210, 105, 30, 0.3)')
+        depthGradient.addColorStop(1, 'rgba(112, 54, 16, 0.3)')
         break
       case 'cedar':
-        gradient.addColorStop(0, '#E6D4B1')
-        gradient.addColorStop(0.5, '#D2B48C')
-        gradient.addColorStop(1, '#BC9A6A')
+        mainGradient.addColorStop(0, '#F4E4C1')
+        mainGradient.addColorStop(0.3, '#E6D4B1')
+        mainGradient.addColorStop(0.6, '#D2B48C')
+        mainGradient.addColorStop(1, '#BC9A6A')
+        depthGradient.addColorStop(0, 'rgba(244, 228, 177, 0.3)')
+        depthGradient.addColorStop(1, 'rgba(188, 154, 106, 0.3)')
+        break
+      case 'walnut':
+        mainGradient.addColorStop(0, '#8B6F47')
+        mainGradient.addColorStop(0.3, '#6B4423')
+        mainGradient.addColorStop(0.6, '#5C3A1E')
+        mainGradient.addColorStop(1, '#3E2723')
+        depthGradient.addColorStop(0, 'rgba(139, 111, 71, 0.3)')
+        depthGradient.addColorStop(1, 'rgba(62, 39, 35, 0.3)')
+        break
+      case 'mahogany':
+        mainGradient.addColorStop(0, '#D2691E')
+        mainGradient.addColorStop(0.3, '#C04000')
+        mainGradient.addColorStop(0.6, '#8B2500')
+        mainGradient.addColorStop(1, '#654321')
+        depthGradient.addColorStop(0, 'rgba(210, 105, 30, 0.3)')
+        depthGradient.addColorStop(1, 'rgba(101, 67, 33, 0.3)')
         break
       default:
-        gradient.addColorStop(0, '#8B4513')
-        gradient.addColorStop(1, '#5C3A1E')
+        mainGradient.addColorStop(0, '#8B4513')
+        mainGradient.addColorStop(1, '#5C3A1E')
+        depthGradient.addColorStop(0, 'rgba(139, 69, 19, 0.3)')
+        depthGradient.addColorStop(1, 'rgba(92, 58, 30, 0.3)')
     }
     
-    ctx.fillStyle = gradient
+    // Apply main gradient
+    ctx.fillStyle = mainGradient
     ctx.fillRect(boardX, boardY, boardWidth, boardHeight)
     
-    // Draw wood grain lines
-    ctx.strokeStyle = 'rgba(0, 0, 0, 0.1)'
-    ctx.lineWidth = 0.5
-    for (let i = 0; i < boardHeight; i += 8) {
+    // Apply depth gradient for 3D effect
+    ctx.fillStyle = depthGradient
+    ctx.fillRect(boardX, boardY, boardWidth, boardHeight)
+    
+    // Enhanced wood grain with realistic patterns
+    ctx.strokeStyle = 'rgba(0, 0, 0, 0.15)'
+    ctx.lineWidth = 0.8
+    
+    // Main grain lines
+    for (let i = 0; i < boardHeight; i += 12) {
+      ctx.beginPath()
+      ctx.moveTo(boardX, boardY + i)
+      // Add slight wave to grain
+      const wave = Math.sin(i * 0.1) * 2
+      ctx.lineTo(boardX + boardWidth, boardY + i + wave)
+      ctx.stroke()
+    }
+    
+    // Fine grain details
+    ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)'
+    ctx.lineWidth = 0.3
+    for (let i = 0; i < boardHeight; i += 4) {
       ctx.beginPath()
       ctx.moveTo(boardX, boardY + i)
       ctx.lineTo(boardX + boardWidth, boardY + i)
       ctx.stroke()
     }
     
-    // Draw border
-    ctx.strokeStyle = '#333'
-    ctx.lineWidth = 2
+    // Enhanced border with shadow effect
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.3)'
+    ctx.shadowBlur = 4
+    ctx.shadowOffsetX = 2
+    ctx.shadowOffsetY = 2
+    ctx.strokeStyle = '#2a2a2a'
+    ctx.lineWidth = 3
     ctx.strokeRect(boardX, boardY, boardWidth, boardHeight)
     
-    // Draw safe area (engraving margin)
-    const margin = 10 * scale // 10mm margin
-    ctx.strokeStyle = '#666'
-    ctx.lineWidth = 1
-    ctx.setLineDash([5, 5])
+    // Reset shadow
+    ctx.shadowColor = 'transparent'
+    ctx.shadowBlur = 0
+    ctx.shadowOffsetX = 0
+    ctx.shadowOffsetY = 0
+    
+    // Enhanced safe area (engraving margin) with better visibility
+    const margin = 15 * scale // 15mm margin for professional look
+    ctx.strokeStyle = '#FFD700' // Gold color for professional appearance
+    ctx.lineWidth = 2
+    ctx.setLineDash([8, 4])
     ctx.strokeRect(
       boardX + margin, 
       boardY + margin, 
@@ -93,6 +150,14 @@ function Canvas({
       boardHeight - (margin * 2)
     )
     ctx.setLineDash([])
+    
+    // Add corner markers for professional look
+    ctx.fillStyle = '#FFD700'
+    const markerSize = 8
+    ctx.fillRect(boardX + margin - markerSize/2, boardY + margin - markerSize/2, markerSize, markerSize)
+    ctx.fillRect(boardX + boardWidth - margin - markerSize/2, boardY + margin - markerSize/2, markerSize, markerSize)
+    ctx.fillRect(boardX + margin - markerSize/2, boardY + boardHeight - margin - markerSize/2, markerSize, markerSize)
+    ctx.fillRect(boardX + boardWidth - margin - markerSize/2, boardY + boardHeight - margin - markerSize/2, markerSize, markerSize)
     
     return { boardX, boardY, boardWidth, boardHeight, scale }
   }, [boardDimensions, woodType, canvasSize, calculateScale])

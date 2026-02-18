@@ -3,7 +3,6 @@ import ToolSidebar from './ToolSidebar.jsx'
 import Canvas from './Canvas.jsx'
 import PropertiesPanel from './PropertiesPanel.jsx'
 import { useProject } from '../../context/ProjectContext.jsx'
-import { priceCalculator } from '../../utils/priceCalculator.js'
 import { imageConverter } from '../../utils/imageConverter.js'
 
 function EditorWorkspace() {
@@ -20,25 +19,11 @@ function EditorWorkspace() {
 
   // Editor state
   const [selectedTool, setSelectedTool] = useState('select')
-  const [priceCalculation, setPriceCalculation] = useState({})
   const [isProcessing, setIsProcessing] = useState(false)
 
   // File input ref
   const fileInputRef = useRef(null)
 
-  // Calculate price whenever dimensions or wood type change
-  useEffect(() => {
-    const svgComplexity = svgContent ? 
-      priceCalculator.calculateSVGComplexity(svgContent) : 1.0
-    
-    const calculation = priceCalculator.calculatePrice(
-      boardDimensions, 
-      selectedWoodType, 
-      svgComplexity
-    )
-    
-    setPriceCalculation(calculation)
-  }, [boardDimensions, selectedWoodType, svgContent])
 
   // Handle image upload
   const handleImageUpload = useCallback(async (event) => {
@@ -134,7 +119,6 @@ function EditorWorkspace() {
         woodType={selectedWoodType}
         onDimensionChange={handleDimensionChange}
         onWoodTypeChange={handleWoodTypeChange}
-        priceCalculation={priceCalculation}
       />
 
       {/* Hidden file input */}

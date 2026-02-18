@@ -1,15 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { 
-  Upload, 
   MousePointer, 
+  Move, 
+  PenTool, 
   Square, 
   Circle, 
-  PenTool, 
-  Eraser, 
+  Eraser,
+  Upload,
+  RotateCw,
   Download,
-  FileImage,
-  Move,
-  RotateCw
+  Trash2,
+  Hammer,
+  Scissors,
+  Drill,
+  Saw,
+  Wrench,
+  Zap,
+  Palette,
+  FileImage
 } from 'lucide-react'
 
 function ToolSidebar({ 
@@ -29,6 +37,13 @@ function ToolSidebar({
     { id: 'rectangle', icon: Square, label: 'Rectángulo' },
     { id: 'circle', icon: Circle, label: 'Círculo' },
     { id: 'eraser', icon: Eraser, label: 'Borrar' },
+    { id: 'hammer', icon: Hammer, label: 'Martillo' },
+    { id: 'saw', icon: Saw, label: 'Sierra' },
+    { id: 'drill', icon: Drill, label: 'Taladro' },
+    { id: 'wrench', icon: Wrench, label: 'Llave' },
+    { id: 'scissors', icon: Scissors, label: 'Tijeras' },
+    { id: 'zap', icon: Zap, label: 'Grabado Láser' },
+    { id: 'palette', icon: Palette, label: 'Acabados' }
   ]
 
   return (

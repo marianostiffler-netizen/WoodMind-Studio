@@ -3,18 +3,17 @@ import {
   Settings, 
   Ruler, 
   Package, 
-  Clock,
-  DollarSign,
-  Calculator,
-  Layers
+  Layers,
+  Sparkles,
+  Palette,
+  Brush
 } from 'lucide-react'
 
 function PropertiesPanel({ 
   boardDimensions, 
   woodType, 
   onDimensionChange, 
-  onWoodTypeChange,
-  priceCalculation 
+  onWoodTypeChange
 }) {
   const woodTypes = [
     { id: 'pine', name: 'Pino', price: 15, color: '#DEB887' },
@@ -61,9 +60,48 @@ function PropertiesPanel({
                   />
                   <span className="text-sm">{wood.name}</span>
                 </div>
-                <span className="text-xs">${wood.price}/cm²</span>
               </button>
             ))}
+          </div>
+        </div>
+
+        {/* Professional Decoration Options */}
+        <div className="bg-gray-700 rounded-lg p-4">
+          <div className="flex items-center mb-3">
+            <Sparkles className="w-4 h-4 mr-2 text-wood-500" />
+            <label className="text-sm font-medium text-gray-300">Opciones de Decoración Profesional</label>
+          </div>
+          
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-2">
+              <button className="px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-500 transition-colors text-xs">
+                <Palette className="w-3 h-3 inline mr-1" />
+                Patrones Clásicos
+              </button>
+              <button className="px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-500 transition-colors text-xs">
+                <Brush className="w-3 h-3 inline mr-1" />
+                Acabados Artísticos
+              </button>
+              <button className="px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-500 transition-colors text-xs">
+                <Sparkles className="w-3 h-3 inline mr-1" />
+                Grabados Personalizados
+              </button>
+              <button className="px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-500 transition-colors text-xs">
+                <Layers className="w-3 h-3 inline mr-1" />
+                Texturas Especiales
+              </button>
+            </div>
+            
+            <div className="mt-3 p-3 bg-gray-800 rounded-lg">
+              <p className="text-xs text-gray-400 mb-2">Estilos profesionales disponibles:</p>
+              <div className="flex flex-wrap gap-1">
+                <span className="px-2 py-1 bg-wood-600 text-white rounded text-xs">Rústico</span>
+                <span className="px-2 py-1 bg-wood-600 text-white rounded text-xs">Moderno</span>
+                <span className="px-2 py-1 bg-wood-600 text-white rounded text-xs">Clásico</span>
+                <span className="px-2 py-1 bg-wood-600 text-white rounded text-xs">Minimalista</span>
+                <span className="px-2 py-1 bg-wood-600 text-white rounded text-xs">Ornamental</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -126,73 +164,6 @@ function PropertiesPanel({
           </div>
         </div>
 
-        {/* Price Calculation */}
-        <div className="bg-gray-700 rounded-lg p-4">
-          <div className="flex items-center mb-3">
-            <Calculator className="w-4 h-4 mr-2 text-wood-500" />
-            <label className="text-sm font-medium text-gray-300">Cálculo de Precio</label>
-          </div>
-          
-          <div className="space-y-3">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-400">Área Superficie:</span>
-              <span className="text-white">
-                {(boardDimensions.width * boardDimensions.height).toFixed(1)} cm²
-              </span>
-            </div>
-            
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-400">Material:</span>
-              <span className="text-white">{currentWoodType.name}</span>
-            </div>
-            
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-400">Costo Base:</span>
-              <span className="text-white">
-                ${(boardDimensions.width * boardDimensions.height * currentWoodType.price).toFixed(2)}
-              </span>
-            </div>
-            
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-400">Complejidad:</span>
-              <span className="text-white">×{priceCalculation.complexity || 1.2}</span>
-            </div>
-            
-            <div className="border-t border-gray-600 pt-3">
-              <div className="flex justify-between">
-                <span className="text-white font-semibold">Precio Total:</span>
-                <span className="text-wood-500 font-bold text-lg">
-                  ${priceCalculation.totalPrice || '0.00'}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Production Time */}
-        <div className="bg-gray-700 rounded-lg p-4">
-          <div className="flex items-center mb-3">
-            <Clock className="w-4 h-4 mr-2 text-wood-500" />
-            <label className="text-sm font-medium text-gray-300">Tiempo de Producción</label>
-          </div>
-          
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-400">Grabado láser:</span>
-              <span className="text-white">{priceCalculation.engravingTime || '15 min'}</span>
-            </div>
-            
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-400">Preparación:</span>
-              <span className="text-white">{priceCalculation.preparationTime || '10 min'}</span>
-            </div>
-            
-            <div className="flex justify-between text-sm font-semibold">
-              <span className="text-white">Total:</span>
-              <span className="text-wood-500">{priceCalculation.totalTime || '25 min'}</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   )
