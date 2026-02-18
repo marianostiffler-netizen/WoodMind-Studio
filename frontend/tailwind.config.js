@@ -14,10 +14,18 @@ export default {
         'wood-oak': '#C8A96E',
         'wood-pine': '#DEB887',
         'wood-mahogany': '#C04000',
-        'wood-600': '#8B4513',
-        'wood-700': '#5C3A1E',
-        'wood-500': '#D4A574',
-        'wood-100': '#F5E6D3',
+        'wood': {
+          50: '#FEFDF9',
+          100: '#F5E6D3',
+          200: '#E8D1B8',
+          300: '#D4A574',
+          400: '#C19660',
+          500: '#8B4513',
+          600: '#703610',
+          700: '#5C3A1E',
+          800: '#4A2F1A',
+          900: '#362415',
+        }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
