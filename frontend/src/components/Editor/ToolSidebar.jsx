@@ -23,12 +23,12 @@ function ToolSidebar({
   const [activeCategory, setActiveCategory] = useState('tools')
 
   const tools = [
-    { id: 'select', icon: MousePointer, label: 'Seleccionar' },
-    { id: 'move', icon: Move, label: 'Mover' },
-    { id: 'pen', icon: PenTool, label: 'Dibujar' },
-    { id: 'rectangle', icon: Square, label: 'Rectángulo' },
-    { id: 'circle', icon: Circle, label: 'Círculo' },
-    { id: 'eraser', icon: Eraser, label: 'Borrar' },
+    { id: 'select', icon: MousePointer, label: 'Select' },
+    { id: 'move', icon: Move, label: 'Move' },
+    { id: 'pen', icon: PenTool, label: 'Draw' },
+    { id: 'rectangle', icon: Square, label: 'Rectangle' },
+    { id: 'circle', icon: Circle, label: 'Circle' },
+    { id: 'eraser', icon: Eraser, label: 'Erase' },
   ]
 
   return (
@@ -55,7 +55,7 @@ function ToolSidebar({
             <label
               htmlFor="file-upload"
               className="w-12 h-12 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center cursor-pointer transition-colors group"
-              title="Subir Imagen"
+              title="Upload Image"
             >
               <Upload className="w-5 h-5 text-gray-300 group-hover:text-white" />
             </label>
@@ -86,7 +86,7 @@ function ToolSidebar({
         <button
           onClick={onRotate}
           className="w-12 h-12 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors"
-          title="Rotar"
+          title="Rotate"
         >
           <RotateCw className="w-5 h-5 text-gray-300" />
         </button>
@@ -94,7 +94,7 @@ function ToolSidebar({
         <button
           onClick={onDownload}
           className="w-12 h-12 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center justify-center transition-colors"
-          title="Descargar"
+          title="Download"
         >
           <Download className="w-5 h-5 text-gray-300" />
         </button>
@@ -102,7 +102,7 @@ function ToolSidebar({
         <button
           onClick={onClearCanvas}
           className="w-12 h-12 bg-red-600 hover:bg-red-700 rounded-lg flex items-center justify-center transition-colors"
-          title="Limpiar"
+          title="Clear"
         >
           <Eraser className="w-5 h-5 text-white" />
         </button>

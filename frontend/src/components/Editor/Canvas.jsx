@@ -206,8 +206,8 @@ function Canvas({
       {/* Canvas overlay info */}
       <div className="absolute top-4 left-4 bg-gray-800 bg-opacity-90 text-white px-3 py-2 rounded-lg text-sm">
         <div>Canvas: {canvasSize.width} × {canvasSize.height}</div>
-        <div>Tablero: {boardDimensions.width} × {boardDimensions.height} cm</div>
-        <div>Escala: {calculateScale().toFixed(2)}x</div>
+        <div>Board: {boardDimensions.width} × {boardDimensions.height} cm</div>
+        <div>Scale: {calculateScale().toFixed(2)}x</div>
       </div>
     </div>
   )
