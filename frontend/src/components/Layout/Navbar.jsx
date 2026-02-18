@@ -17,10 +17,10 @@ function Navbar() {
   const { projectName, svgContent, boardDimensions } = useProject()
 
   const navigation = [
-    { name: 'Home', href: '/', icon: HomeIcon },
+    { name: 'Inicio', href: '/', icon: HomeIcon },
     { name: 'Editor', href: '/editor', icon: PencilIcon },
-    { name: '3D Viewer', href: '/viewer', icon: CubeIcon },
-    { name: 'Pricing', href: '/pricing', icon: CurrencyDollarIcon },
+    { name: 'Visor 3D', href: '/viewer', icon: CubeIcon },
+    { name: 'Precios', href: '/pricing', icon: CurrencyDollarIcon },
   ]
 
   return (
@@ -65,7 +65,7 @@ function Navbar() {
             {projectName && (
               <div className="hidden sm:block">
                 <div className="text-sm text-gray-600">
-                  Project: <span className="font-medium">{projectName}</span>
+                  Proyecto: <span className="font-medium">{projectName}</span>
                 </div>
                 {svgContent && (
                   <div className="text-xs text-gray-500">
