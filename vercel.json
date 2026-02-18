@@ -4,7 +4,6 @@
   "outputDirectory": "frontend/dist",
   "framework": "vite",
   "installCommand": "cd frontend && npm ci",
-  "functions": {},
   "routes": [
     {
       "src": "/api/(.*)",
@@ -13,7 +12,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/frontend/index.html"
     }
   ]
 }
